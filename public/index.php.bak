@@ -6,6 +6,10 @@
  * @package  Laravel
  * @author   Taylor Otwell <taylor@laravel.com>
  */
+/*
+オートローダーの読み込み（require __DIR__.'/../vendor/autoload.php';まで）
+※オートローダーとは：クラスなど定義されたPHPファイルを自動で読み込む仕組み
+*/
 define('LARAVEL_START', microtime(true));
 
 /*
@@ -32,6 +36,10 @@ require __DIR__.'/../vendor/autoload.php';
 | the responses back to the browser and delight our users.
 |
 */
+/*
+フレームワークの起動
+※app.phpに書かれていること：フレームワークをセットアップするコード
+*/
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 /*
@@ -45,11 +53,17 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
+/*
+アプリケーションの実行
+※戻り値：$response(=HTTPレスポンス)
+*/
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
 
+//HTTPレスポンスの送信
 $response->send();
 
+//処理終了
 $kernel->terminate($request, $response);

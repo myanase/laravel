@@ -22,6 +22,9 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        //'hello'=>\App\Http\Middleware\HelloMiddleware::class,
+        //↓p118 グローバルミドルウェアの登録
+        \App\Http\Middleware\HelloMiddleware::class,
     ];
 
     /**
@@ -45,6 +48,10 @@ class Kernel extends HttpKernel
             'bindings',
         ],
 
+        //p119 ミドルウェアのグループ登録
+        'helo'=>[
+            \App\Http\Middleware\HelloMiddleware::class,
+        ]
     ];
 
     /**
